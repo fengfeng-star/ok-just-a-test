@@ -10,7 +10,7 @@ plt.rcParams['axes.unicode_minus'] = False
 
 if __name__ == "__main__":
 
-    # ================= 模型选择 =================
+    # 模型选择
 
     # 可选：
     # LDA
