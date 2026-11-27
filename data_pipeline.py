@@ -38,12 +38,12 @@ def get_features(feature_list, cache_dir=r"D:\bci\11.2 test2"):
     cache_y = os.path.join(cache_dir, "labels_y.npy")
 
     if os.path.exists(cache_x) and os.path.exists(cache_y):
-        print("✅ 找到缓存数据，直接加载...")
+        print("找到缓存数据，直接加载...")
         X_filt = np.load(cache_x)
         y = np.load(cache_y)
 
     else:
-        print("⚠️ 未找到缓存，开始加载数据并滤波...")
+        print("未找到缓存，开始加载数据并滤波...")
 
         file_s1 = r"D:\bci\11.2 test2\注意力\data\Subject1_attention.mat"
         file_s2 = r"D:\bci\11.2 test2\注意力\data\Subject2_attention.mat"
@@ -87,14 +87,14 @@ def get_features(feature_list, cache_dir=r"D:\bci\11.2 test2"):
         np.save(cache_x, X_filt)
         np.save(cache_y, y)
 
-    print(f"✅ 数据就绪: {X_filt.shape[0]} 试次")
+    print(f" 数据就绪: {X_filt.shape[0]} 试次")
 
     # EEGNet：直接使用原始EEG
     if 'EEGNet' in feature_list:
         if len(feature_list) != 1:
             raise ValueError("EEGNet需要单独使用，请设置为 ['EEGNet']")
 
-        print("✅ EEGNet直接使用原始EEG数据")
+        print(" EEGNet直接使用原始EEG数据")
         return EEGNetData(X_filt), y
 
     # Riemann：每折单独拟合
@@ -105,7 +105,7 @@ def get_features(feature_list, cache_dir=r"D:\bci\11.2 test2"):
                 "请将 feature_list 设置为 ['Riemann']"
             )
 
-        print("✅ Riemann特征将在每个交叉验证折中单独拟合")
+        print("Riemann特征将在每个交叉验证折中单独拟合")
         return RiemannData(X_filt), y
 
     # 其他传统特征
@@ -117,6 +117,6 @@ def get_features(feature_list, cache_dir=r"D:\bci\11.2 test2"):
         sfreq=500
     )
 
-    print(f"✅ 特征提取完成！最终矩阵形状: {X_features.shape}")
+    print(f"特征提取完成！最终矩阵形状: {X_features.shape}")
 
     return X_features, y
