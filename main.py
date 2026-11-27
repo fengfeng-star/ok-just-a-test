@@ -7,7 +7,6 @@ from evaluation import evaluate_and_plot
 plt.rcParams['font.sans-serif'] = ['SimHei']
 plt.rcParams['axes.unicode_minus'] = False
 
-
 if __name__ == "__main__":
 
     # 模型选择
@@ -24,7 +23,7 @@ if __name__ == "__main__":
 
     MODEL_TYPE = 'XGBoost'
 
-    # ================= 特征选择 =================
+    #特征选择
 
     # 传统机器学习模型使用的特征
     SELECTED_FEATURES = [
